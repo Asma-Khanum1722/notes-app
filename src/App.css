@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  background-color: #f5f5f5;
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -8,14 +8,14 @@ body {
 
 #root {
   width: 500px;
-  background: #fff;
+  background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .notes-container div {
-  background: #e7f3ff;
+  background-color: #e7f3ff;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -66,21 +66,21 @@ button:active {
 }
 
 .delete-btn {
-  background: #ff6b6b;
+  background-color: #ff6b6b;
   color: white;
 }
 
 .edit-btn {
-  background: #4da6ff;
+  background-color: #4da6ff;
   color: white;
 }
 
 .save-btn {
-  background: #2ecc71;
+  background-color: #2ecc71;
   color: white;
 }
 
 .add-btn {
-  background: #3498db;
+  background-color: #3498db;
   color: white;
 }
