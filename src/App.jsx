@@ -28,7 +28,7 @@ function App() {
     if (savedNotes) {
       setNotesList(JSON.parse(savedNotes));
     }
-  }, []); //dependency array is empty so it will be rendered once
+  }, []); //dependency array is empty so that it will be rendered once
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notesList));
@@ -78,38 +78,42 @@ function App() {
 
   function displayNotes() {
     return notesList.map((note) => (
-      <div key={note.id}>
+      <div className="note-card" key={note.id}>
         {note.id === editingId ? (
-          <>
-            <textarea
-              value={editingText}
-              onChange={(event) => setEditingText(event.target.value)}
-            />
-            <button className="save-btn" onClick={() => saveNote(note.id)}>
-              Save
-            </button>
-          </>
+          <textarea
+            value={editingText}
+            onChange={(event) => setEditingText(event.target.value)}
+          />
         ) : (
-          <span>{note.noteText}</span>
+          <p>{note.noteText}</p>
         )}
 
-        <p>{note.date}</p>
-
-        <button
-          className="delete-btn"
-          onClick={() => {
-            deleteNote(note.id);
-          }}
-        >
-          Delete
-        </button>
-
-        <button
-          className="edit-btn"
-          onClick={() => editNote(note.id, note.noteText)}
-        >
-          Edit
-        </button>
+        {/* Footer with date + actions */}
+        <div className="note-footer">
+          <span className="note-date">{note.date}</span>
+          <div className="note-actions">
+            {note.id === editingId ? (
+              <button className="save-btn" onClick={() => saveNote(note.id)}>
+                Save
+              </button>
+            ) : (
+              <>
+                <button
+                  className="edit-btn"
+                  onClick={() => editNote(note.id, note.noteText)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteNote(note.id)}
+                >
+                  Delete
+                </button>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     ));
   }
@@ -124,13 +128,15 @@ function App() {
 
   return (
     <>
+      <h2>Notes App</h2>
       <div className="notes-container">{displayNotes()}</div>
-      <div>
+      <div className="note-input">
         <textarea
           onChange={fetchInput}
           name="notes"
           id="notes"
           value={inputText}
+          placeholder="Write a note..."
         ></textarea>
         <button className="add-btn" onClick={addNewNote}>
           Add
